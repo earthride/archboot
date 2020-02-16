@@ -28,4 +28,7 @@ pacstrap /mnt base linux linux-firmware intel-ucode
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
+curl https://raw.githubusercontent.com/earthride/archboot/master/chroot.sh > /mnt/chroot.sh \
+&& arch-chroot /mnt bash chroot.sh && rm /mnt/chroot.sh
+
 clear
