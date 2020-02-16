@@ -9,18 +9,18 @@ sgdisk -n 3:0:+3GiB -c 3:"/tmp" -t 3:8300 "$1"
 sgdisk -n 4:0:+4GiB -c 4:"/home" -t 4:8302 "$1"
 sgdisk -p "$1"
 
-mkfs.fat -F32 "$1p1"
-mkfs.ext4 "$1p2"
-mkfs.ext4 "$1p3"
-mkfs.ext4 "$1p4"
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda3
+mkfs.ext4 /dev/sda4
 
-mount "$1p2" /mnt
+mount /dev/sda2 /mnt
 mkdir -p /mnt/boot
-mount "$1p1" /mnt/boot
+mount /dev/sda1 /mnt/boot
 mkdir -p /mnt/tmp
-mount "$1p3" /mnt/tmp
+mount /dev/sda3 /mnt/tmp
 mkdir -p /mnt/home
-mount "$1p4" /mnt/home
+mount /dev/sda4 /mnt/home
 
 pacman -Sy --noconfirm archlinux-keyring
 
