@@ -58,6 +58,8 @@ pause 'Setting up the bootloader. Press [Enter] to continue...'
 
 bootctl --path=/boot install
 
+pause 'Adding entries. Press [Enter] to continue...'
+
 cat << 'EOF' > /boot/loader/loader.conf
 default arch
 timeout 3
