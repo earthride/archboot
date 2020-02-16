@@ -26,8 +26,6 @@ mount "/dev/sda3" /mnt/tmp
 mkdir -p /mnt/home
 mount "/dev/sda4" /mnt/home
 
-pacman -Sy --noconfirm archlinux-keyring
-
 pause 'Done Partitioning. Press [Enter] to continue...'
 
 pacstrap /mnt base linux linux-firmware intel-ucode 
