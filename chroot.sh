@@ -2,16 +2,16 @@ ln -sf /usr/share/zoneinfo/Europe/Ljubljana /etc/localtime
 
 hwclock --systohc
 
-echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_GB ISO-8859-1" >> /etc/locale.gen
 locale-gen
 
-echo "KEYMAP=uk" >> /etc/vconsole.conf
-
 pacman --noconfirm --needed -S networkmanager
 systemctl enable NetworkManager
 systemctl start NetworkManager
+
+pause 'Setting up the bootloader. Press [Enter] to continue...'
 
 bootctl --path=/boot install
 
@@ -30,3 +30,5 @@ initrd /initramfs-linux.img
 EOF
 
 echo "options root=UUID=$(lsblk -n -o UUID /dev/sda2) rw" >> /boot/loader/entries/arch.conf
+
+pause 'Done. Press [Enter] to continue...'
