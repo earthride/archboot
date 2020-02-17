@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 function pause(){
    read -p "$*"
 }
@@ -36,4 +34,4 @@ pause 'Chrooting into the system. Press [Enter] to continue...'
 
 curl https://raw.githubusercontent.com/earthride/archboot/master/chroot.sh > /mnt/chroot.sh
 arch-chroot /mnt bash ./chroot.sh && rm /mnt/chroot.sh
-#arch-chroot /mnt 
+arch-chroot /mnt 
