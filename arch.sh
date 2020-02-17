@@ -37,4 +37,3 @@ curl https://raw.githubusercontent.com/earthride/archboot/master/chroot.sh > /mn
 arch-chroot /mnt bash ./chroot.sh && rm /mnt/chroot.sh
 
 umount -R /mnt
-
