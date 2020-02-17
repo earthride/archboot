@@ -28,7 +28,7 @@ mount "/dev/sda4" /mnt/home
 
 pause 'Done Partitioning. Press [Enter] to continue...'
 
-pacstrap /mnt base linux linux-firmware intel-ucode 
+pacstrap /mnt #base linux linux-firmware intel-ucode 
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
