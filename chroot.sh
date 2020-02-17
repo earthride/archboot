@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+function pause(){
+   read -p "$*"
+}
+
 ln -sf /usr/share/zoneinfo/Europe/Ljubljana /etc/localtime
 
 hwclock --systohc
@@ -7,13 +13,15 @@ echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_GB ISO-8859-1" >> /etc/locale.gen
 locale-gen
 
-pacman --noconfirm --needed -S networkmanager
-systemctl enable NetworkManager
-systemctl start NetworkManager
+#pacman --noconfirm --needed -S networkmanager
+#systemctl enable NetworkManager
+#systemctl start NetworkManager
 
 pause 'Setting up the bootloader. Press [Enter] to continue...'
 
 bootctl --path=/boot install
+
+pause 'Adding entries. Press [Enter] to continue...'
 
 cat << 'EOF' > /boot/loader/loader.conf
 default arch
