@@ -4,6 +4,8 @@ function pause(){
    read -p "$*"
 }
 
+pause 'Setting locales. Press [Enter] to continue...'
+
 ln -sf /usr/share/zoneinfo/Europe/Ljubljana /etc/localtime
 
 hwclock --systohc
