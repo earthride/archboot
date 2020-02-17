@@ -34,10 +34,11 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 pause 'Chrooting into the system. Press [Enter] to continue...'
 
-curl https://raw.githubusercontent.com/earthride/archboot/master/chroot.sh > /mnt/chroot.sh \
-&& arch-chroot /mnt bash chroot.sh && rm /mnt/chroot.sh
+curl https://raw.githubusercontent.com/earthride/archboot/master/chroot.sh > /mnt/chroot.sh
+arch-chroot /mnt bash ./chroot.sh && rm /mnt/chroot.sh
+#arch-chroot /mnt 
 
-arch-chroot /mnt 
+pause 'Setting locales. Press [Enter] to continue...'
 
 ln -sf /usr/share/zoneinfo/Europe/Ljubljana /etc/localtime
 
@@ -48,9 +49,9 @@ echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_GB ISO-8859-1" >> /etc/locale.gen
 locale-gen
 
-pacman --noconfirm --needed -S networkmanager
-systemctl enable NetworkManager
-systemctl start NetworkManager
+#pacman --noconfirm --needed -S networkmanager
+#systemctl enable NetworkManager
+#systemctl start NetworkManager
 
 pause 'Setting up the bootloader. Press [Enter] to continue...'
 
@@ -75,4 +76,3 @@ EOF
 echo "options root=UUID=$(lsblk -n -o UUID /dev/nvme0n1p2) rw" >> /boot/loader/entries/arch.conf
 
 pause 'Done. Press [Enter] to continue...'
-
