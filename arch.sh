@@ -10,8 +10,8 @@ timedatectl set-ntp true
 
 sgdisk -og "$1"
 sgdisk -n 1:0:+550MiB -c 1:"EFIBOOT" -t 1:ef00 "$1"
-sgdisk -n 2:0:+15GiB -c 2:"root" -t 2:8304 "$1"
-sgdisk -n 3:0:+4GiB -c 3:"/tmp" -t 3:8300 "$1"
+sgdisk -n 2:0:+2GiB -c 2:"root" -t 2:8304 "$1"
+sgdisk -n 3:0:+3GiB -c 3:"/tmp" -t 3:8300 "$1"
 sgdisk -n 4:0:+4GiB -c 4:"/home" -t 4:8302 "$1"
 
 mkfs.fat -F32 /dev/sda1
@@ -29,7 +29,7 @@ mount /dev/sda4 /mnt/home
 
 pacman --noconfirm -Sy archlinux-keyring >/dev/null 2>&1
 
-pacstrap /mnt base linux linux-firmware intel-ucode sudo networkmanager reflector
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode networkmanager reflector
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
