@@ -10,9 +10,9 @@ timedatectl set-ntp true
 
 sgdisk -og "$1"
 sgdisk -n 1:0:+550MiB -c 1:"EFIBOOT" -t 1:ef00 "$1"
-sgdisk -n 2:0:+2GiB -c 2:"root" -t 2:8304 "$1"
+sgdisk -n 2:0:+10GiB -c 2:"root" -t 2:8304 "$1"
 sgdisk -n 3:0:+3GiB -c 3:"/tmp" -t 3:8300 "$1"
-sgdisk -n 4:0:+4GiB -c 4:"/home" -t 4:8302 "$1"
+sgdisk -n 4:0:+3GiB -c 4:"/home" -t 4:8302 "$1"
 
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
