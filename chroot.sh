@@ -28,42 +28,16 @@ initrd /intel-ucode.img
 initrd /initramfs-linux.img
 EOF
 
-echo "options root=UUID=$(lsblk -n -o UUID /dev/sda2) rw" >> /boot/loader/entries/arch.conf
+echo "options root=UUID=$(lsblk -n -o UUID /dev/nvme0n1p2) rw" >> /boot/loader/entries/arch.conf
 
 passwd
-
 echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/pacman -Syyu --noconfirm","/usr/bin/pacman -Rs" >> /etc/sudoers
 useradd -m -g wheel -s /bin/bash earthride 
 passwd earthride
 
 grep "^Color" /etc/pacman.conf >/dev/null || sed -i "s/^#Color/Color/" /etc/pacman.conf
-
 pacman --noconfirm -Sy archlinux-keyring >/dev/null 2>&1
-
 reflector --latest 20 --sort score --age 24 --save /etc/pacman.d/mirrorlist
-
-pkgs=(
-    "xorg"
-    "sudo"
-    "which"
-    "plasma-meta"
-    "neovim"
-    "engrampa"
-    "redshift"
-    "viewnior"
-    "transmission-gtk"
-    "vlc"
-    "keepassxc"
-    "git" 
-    "nm-connection-editor"
-    "firewalld"
-    "pulseaudio"
-    "audacity"
-    "zsh"
-)
-
-for pkg in "${pkgs[@]}"; do
-    pacman -S --noconfirm --needed "$pkg"
-done
+pacman -S --noconfirm --needed xorg-server xorg-xinit git neovim gedit nm-connection-editor firewalld zsh network-manager-applet bspwm feh gedit
 
 systemctl enable fstrim.timer firewalld.service NetworkManager
