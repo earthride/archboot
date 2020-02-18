@@ -28,7 +28,7 @@ initrd /intel-ucode.img
 initrd /initramfs-linux.img
 EOF
 
-echo "options root=UUID=$(lsblk -n -o UUID /dev/nvme0n1p2) rw" >> /boot/loader/entries/arch.conf
+echo "options root=UUID=$(lsblk -n -o UUID /dev/sda2) rw" >> /boot/loader/entries/arch.conf
 
 passwd
 echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/pacman -Syyu --noconfirm","/usr/bin/pacman -Rs" >> /etc/sudoers
