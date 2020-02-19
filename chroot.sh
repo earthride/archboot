@@ -31,7 +31,7 @@ EOF
 echo "options root=UUID=$(lsblk -n -o UUID /dev/sda2) rw" >> /boot/loader/entries/arch.conf
 
 passwd
-echo "%wheel ALL=(ALL) ALL"
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/pacman -Syyu --noconfirm","/usr/bin/pacman -Rs" >> /etc/sudoers
 useradd -m -g wheel -s /bin/bash earthride 
 passwd earthride
